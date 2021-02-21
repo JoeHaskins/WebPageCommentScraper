@@ -13,8 +13,4 @@ for line in lines:
     cleanpagedata = bs4.BeautifulSoup(pagedata.text, 'html.parser')
 
     stringpagedata = re.sub('\n', ' ', str(cleanpagedata))
-    comment = re.findall('<!--.*-->', stringpagedata)
-
-
-    print(comment)
-    print(stringpagedata)
+    htmlcomment = re.findall(r'<!--(.+?|\n*?)-->', stringpagedata)
