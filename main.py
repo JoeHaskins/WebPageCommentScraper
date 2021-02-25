@@ -10,7 +10,6 @@ parser = argparse.ArgumentParser(description='Process a list of urls and scrape 
 parser.add_argument('file_path', help='Provide file path of .txt with list of urls to check',
                     nargs='?', default='0')
 args = parser.parse_args()
-print(args)
 
 if args.file_path != '0':
 
@@ -36,10 +35,6 @@ if args.file_path != '0':
                 jscomments = re.findall(r'/\*(.+?)\*/', stringpagedata)
                 singlejscomments = re.findall(r'\B//(.+?)\n', str(cleanpagedata))
 
-                print(htmlcomments)
-                print(jscomments)
-                print(singlejscomments)
-
                 f.write("--"+url+"\n\n")
                 for i in htmlcomments:
                     f.write(str(i)+"\n")
@@ -52,10 +47,9 @@ if args.file_path != '0':
                 print("An error occurred with URL: "+url+" HTTP Status Code: "+str(pagedata.status_code))
 
         f.close()
+        print("URL's scanned comments outputted to file: "+name)
     except:
         print("Bad file path")
         sys.exit()
-
-
 else:
     print(FileNotFoundError)
